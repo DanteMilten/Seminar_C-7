@@ -7,34 +7,35 @@
 // 8 7,8 -7,1 9
 
 Console.Clear();
-Console.WriteLine();
+Console.WriteLine("Введите количество строк  ");
+int lines = Convert.ToInt32(Console.ReadLine());
+Console.WriteLine("Введите количество столбцов");
+int columns = Convert.ToInt32(Console.ReadLine());
+double[,] numbers = new double[lines, columns];
+FillArrayRandomNumbers(numbers);
+PrintArray(numbers);
 
-double[,] GetTableDouble(int m, int n)
+void FillArrayRandomNumbers(double[,] array)
 {
-    double[,] table = new double[m, n];
-    for (int i = 0; i < table.GetLength(0); i++)
+    for (int i = 0; i < array.GetLength(0); i++)
     {
-        for (int j = 0; j < table.GetLength(1); j++)
+        for (int j = 0; j < array.GetLength(1); j++)
         {
-            table[i, j] = new Random().NextDouble() * 100;
+            array[i, j] = Convert.ToDouble(new Random().Next(-100, 100)) / 10;
         }
-    }
-    return table;
-}
-
-void PrintTable(double[,] tab)
-{
-    for (int i = 0; i < tab.GetLength(0); i++)
-    {
-        for (int j = 0; j < tab.GetLength(1); j++)
-        {
-        Console.Write(tab[i, j] + "    ");
-        }
-        Console.WriteLine();
     }
 }
 
-int m = 3;
-int n = 4;
-double[,] TableDouble = GetTableDouble(m, n);
-PrintTable(TableDouble);
+void PrintArray(double[,] array)
+{
+    for (int i = 0; i < array.GetLength(0); i++)
+    {
+        Console.Write("[ ");
+        for (int j = 0; j < array.GetLength(1); j++)
+        {
+            Console.Write(array[i, j] + " ");
+        }
+        Console.Write("]");
+        Console.WriteLine("");
+    }
+}
